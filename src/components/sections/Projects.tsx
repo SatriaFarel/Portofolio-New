@@ -53,20 +53,10 @@ const projects = [
     stack: ["C#"],
     github: "#",
     demo: "#"
-  },
-  {
-    id: 6,
-    title: "Fitness Tracker",
-    category: "Mobile",
-    image: "https://picsum.photos/seed/project6/600/400",
-    description: "Track workouts, nutrition, and progress with this comprehensive fitness application.",
-    stack: ["Flutter", "Dart", "HealthKit"],
-    github: "#",
-    demo: "#"
   }
 ];
 
-const categories = ["All", "Website", "Mobile"];
+const categories = ["All", "Website", "App Dekstop"];
 
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState("All");

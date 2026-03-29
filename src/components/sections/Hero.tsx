@@ -125,14 +125,7 @@ export default function Hero() {
             >
               🚀 Fast Learner
             </motion.div>
-
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ repeat: Infinity, duration: 4 }}
-              className="absolute bottom-6 -right-4 glass px-3 py-1 rounded-lg text-xs font-medium"
-            >
-              💻 Web Developer
-            </motion.div>
+    
           </motion.div>
         </div>
 
