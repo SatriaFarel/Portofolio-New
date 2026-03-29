@@ -1,81 +1,67 @@
 import { Reveal } from '../ui/Reveal';
-import { motion } from 'motion/react';
 
 const skills = [
   {
     category: "Frontend",
-    items: [
-      { name: "React", level: 90 },
-      { name: "TypeScript", level: 85 },
-      { name: "Tailwind CSS", level: 95 },
-      { name: "Next.js", level: 80 },
-    ]
+    items: ["React", "Bootstrap", "Tailwind CSS", "JavaScript"]
   },
   {
     category: "Backend",
-    items: [
-      { name: "Node.js", level: 75 },
-      { name: "Laravel", level: 70 },
-      { name: "PHP", level: 75 },
-      { name: "Express", level: 80 },
-    ]
+    items: ["Laravel", "PHP"]
   },
   {
     category: "Database",
-    items: [
-      { name: "MySQL", level: 85 },
-      { name: "PostgreSQL", level: 70 },
-      { name: "MongoDB", level: 65 },
-      { name: "Firebase", level: 75 },
-    ]
+    items: ["MySQL", "PostgreSQL"]
   },
   {
     category: "Tools",
-    items: [
-      { name: "Git & GitHub", level: 90 },
-      { name: "Figma", level: 85 },
-      { name: "Postman", level: 90 },
-      { name: "Docker", level: 60 },
-    ]
+    items: ["Git & GitHub", "Figma", "Postman"]
   }
 ];
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-20 bg-slate-900/50">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="skills" className="py-16 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+      <div className="max-w-4xl mx-auto px-6">
         <Reveal width="100%">
-          <div className="text-center mb-16">
-            <span className="text-blue-400 font-medium tracking-wider uppercase text-sm">My Arsenal</span>
-            <h2 className="text-3xl md:text-4xl font-bold mt-2">Technical Skills</h2>
-            <div className="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+          <div className="text-center mb-10">
+            <span className="text-blue-400/80 text-sm uppercase tracking-wider">
+              My Arsenal
+            </span>
+            <h2 className="text-3xl font-bold mt-2 text-white">
+              Technical Skills
+            </h2>
+            <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 mx-auto mt-3 rounded-full"></div>
           </div>
         </Reveal>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {skills.map((skillGroup, index) => (
-            <Reveal key={index} delay={index * 0.1}>
-              <div className="glass p-6 rounded-2xl h-full hover:border-blue-500/50 transition-colors duration-300">
-                <h3 className="text-xl font-bold mb-6 text-center text-blue-100">{skillGroup.category}</h3>
-                <div className="space-y-6">
-                  {skillGroup.items.map((skill) => (
-                    <div key={skill.name}>
-                      <div className="flex justify-between mb-2">
-                        <span className="text-sm font-medium text-slate-300">{skill.name}</span>
-                        <span className="text-sm text-blue-400">{skill.level}%</span>
-                      </div>
-                      <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.level}%` }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 1, delay: 0.5 }}
-                          className="h-full bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full"
-                        />
-                      </div>
-                    </div>
+        <div className="space-y-8">
+          {skills.map((group, i) => (
+            <Reveal key={i} delay={i * 0.1}>
+              <div>
+                {/* Title */}
+                <h3 className="text-xs text-blue-400/70 mb-3 uppercase tracking-[0.2em]">
+                  {group.category}
+                </h3>
+
+                {/* Content */}
+                <div className="flex flex-wrap gap-2">
+                  {group.items.map((item) => (
+                    <span
+                      key={item}
+                      className="px-3 py-1 text-sm bg-slate-800/60 text-slate-300 rounded-md border border-slate-700/60 
+                      hover:border-blue-400 hover:text-white hover:bg-slate-800 
+                      transition-all duration-200 backdrop-blur-sm"
+                    >
+                      {item}
+                    </span>
                   ))}
                 </div>
+
+                {/* Divider */}
+                {i !== skills.length - 1 && (
+                  <div className="mt-6 border-t border-slate-800/70"></div>
+                )}
               </div>
             </Reveal>
           ))}

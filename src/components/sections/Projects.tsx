@@ -6,51 +6,51 @@ import { ExternalLink, Github } from 'lucide-react';
 const projects = [
   {
     id: 1,
-    title: "E-Commerce Dashboard",
-    category: "Web",
+    title: "Parkirku",
+    category: "Website",
     image: "https://picsum.photos/seed/project1/600/400",
     description: "A comprehensive dashboard for managing online stores with real-time analytics and inventory management.",
-    stack: ["React", "Tailwind", "Chart.js"],
+    stack: ["Laravel", "TailwindCSS"],
     github: "#",
     demo: "#"
   },
   {
     id: 2,
-    title: "Travel Companion App",
-    category: "Mobile",
+    title: "SIWarga",
+    category: "Website",
     image: "https://picsum.photos/seed/project2/600/400",
     description: "Mobile application helping travelers find local gems, book tours, and connect with other travelers.",
-    stack: ["React Native", "Firebase", "Maps API"],
+    stack: ["Laravel", "TailwindCSS", "JavaScript"],
     github: "#",
     demo: "#"
   },
   {
     id: 3,
-    title: "AI Content Generator",
-    category: "Web",
+    title: "BookPoint",
+    category: "Website",
     image: "https://picsum.photos/seed/project3/600/400",
     description: "SaaS platform using OpenAI API to help marketers generate blog posts and social media captions.",
-    stack: ["Next.js", "OpenAI", "Stripe"],
+    stack: ["Laravel", "React.JS", "TailwindCSS"],
     github: "#",
     demo: "#"
   },
   {
     id: 4,
-    title: "Portfolio Template",
-    category: "Web",
+    title: "Kasir-71",
+    category: "Website",
     image: "https://picsum.photos/seed/project4/600/400",
     description: "A clean, minimal, and performant portfolio template for developers and designers.",
-    stack: ["Vue", "GSAP", "Sass"],
+    stack: ["PHP", "TailwindCSS", "JavaScript"],
     github: "#",
     demo: "#"
   },
   {
     id: 5,
-    title: "Task Management Tool",
-    category: "Web",
+    title: "GOMart",
+    category: "App Dekstop",
     image: "https://picsum.photos/seed/project5/600/400",
     description: "Collaborative task manager with Kanban boards, calendar view, and team chat features.",
-    stack: ["MERN Stack", "Socket.io"],
+    stack: ["C#"],
     github: "#",
     demo: "#"
   },
@@ -66,7 +66,7 @@ const projects = [
   }
 ];
 
-const categories = ["All", "Web", "Mobile"];
+const categories = ["All", "Website", "Mobile"];
 
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState("All");

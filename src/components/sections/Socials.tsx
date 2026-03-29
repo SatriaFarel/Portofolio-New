@@ -6,7 +6,7 @@ const socialLinks = [
   {
     name: "LinkedIn",
     icon: Linkedin,
-    url: "#",
+    url: "https://linkedin.com/in/SatriaFarel",
     color: "bg-[#0077b5]",
     textColor: "text-white",
     description: "Connect professionally",
@@ -15,7 +15,7 @@ const socialLinks = [
   {
     name: "GitHub",
     icon: Github,
-    url: "#",
+    url: "https://github.com/SatriaFarel",
     color: "bg-[#333]",
     textColor: "text-white",
     description: "Check my code",
@@ -24,39 +24,30 @@ const socialLinks = [
   {
     name: "Instagram",
     icon: Instagram,
-    url: "#",
+    url: "https:/instagram.com/satriafarel30",
     color: "bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888]",
     textColor: "text-white",
     description: "Daily life & shots",
     colSpan: "md:col-span-1",
   },
   {
-    name: "Twitter / X",
-    icon: Twitter,
-    url: "#",
-    color: "bg-black",
-    textColor: "text-white",
-    description: "Thoughts & threads",
-    colSpan: "md:col-span-2",
-  },
-  {
     name: "Email",
     icon: Mail,
-    url: "mailto:hello@alexdev.com",
+    url: "mailto:satriafarel40@gmail.com",
     color: "bg-blue-600",
     textColor: "text-white",
     description: "Send me a message",
     colSpan: "md:col-span-1",
   },
-  {
-    name: "Website",
-    icon: Globe,
-    url: "#",
-    color: "bg-emerald-600",
-    textColor: "text-white",
-    description: "My personal space",
-    colSpan: "md:col-span-2",
-  }
+  // {
+  //   name: "Website",
+  //   icon: Globe,
+  //   url: "#",
+  //   color: "bg-emerald-600",
+  //   textColor: "text-white",
+  //   description: "My personal space",
+  //   colSpan: "md:col-span-2",
+  // }
 ];
 
 export default function Socials() {
@@ -74,7 +65,7 @@ export default function Socials() {
           </div>
         </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {socialLinks.map((link, index) => (
             <Reveal key={link.name} delay={index * 0.05} width="100%">
               <motion.a

@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 
 interface RevealProps {
   children: ReactNode;
+  key?: number | string;
   width?: 'fit-content' | '100%';
   delay?: number;
 }

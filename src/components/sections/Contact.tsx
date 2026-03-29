@@ -1,109 +1,150 @@
 import { Reveal } from '../ui/Reveal';
 import { Mail, MapPin, Phone, Send } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+import { useState } from 'react';
 
 export default function Contact() {
-  return (
-    <section id="contact" className="py-20 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[100px] -z-10" />
+  const [loading, setLoading] = useState(false);
 
-      <div className="max-w-7xl mx-auto px-6">
+  const [formData, setFormData] = useState({
+    user_name: "",
+    user_email: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const sendEmail = (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    emailjs.send(
+      "service_e3bfxus",
+      "template_ginygyg",
+      formData,
+      "bStUJ8o3G3IGLjDyd"
+    )
+    .then(() => {
+      alert("Pesan berhasil dikirim!");
+      setFormData({
+        user_name: "",
+        user_email: "",
+        subject: "",
+        message: "",
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      alert("Gagal kirim: " + err.text);
+    })
+    .finally(() => {
+      setLoading(false);
+    });
+  };
+
+  return (
+    <section className="py-20 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" id="contact">
+      <div className="max-w-5xl mx-auto px-6">
+
         <Reveal width="100%">
-          <div className="text-center mb-16">
-            <span className="text-blue-400 font-medium tracking-wider uppercase text-sm">Get In Touch</span>
-            <h2 className="text-3xl md:text-4xl font-bold mt-2">Contact Me</h2>
-            <div className="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+          <div className="text-center mb-14">
+            <span className="text-blue-400/80 uppercase tracking-wider text-sm">
+              Get In Touch
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mt-2">
+              Contact Me
+            </h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 mx-auto mt-4 rounded-full"></div>
           </div>
         </Reveal>
 
-        <div className="grid md:grid-cols-2 gap-12">
-          <Reveal>
-            <div className="space-y-8">
-              <h3 className="text-2xl font-bold">Let's Talk About Your Project</h3>
-              <p className="text-slate-400 leading-relaxed">
-                I'm currently available for freelance work and open to full-time opportunities. 
-                If you have a project that needs some creative touch, or just want to say hi, 
-                feel free to send me a message!
-              </p>
+        <div className="grid md:grid-cols-2 gap-10 items-start">
 
-              <div className="space-y-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-blue-900/30 flex items-center justify-center text-blue-400">
-                    <Mail size={24} />
-                  </div>
-                  <div>
-                    <p className="text-sm text-slate-400">Email</p>
-                    <p className="font-medium">hello@alexdev.com</p>
-                  </div>
+          {/* LEFT */}
+          <Reveal>
+            <div className="space-y-6">
+
+              {[
+                { icon: Mail, text: "satriafarel40@gmail.com" },
+                { icon: Phone, text: "+62 882-9930-9375" },
+                { icon: MapPin, text: "Jakarta, Indonesia" },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="flex items-center gap-4 p-4 rounded-xl border border-slate-800 bg-slate-900/60 hover:bg-slate-800/70 transition"
+                >
+                  <item.icon className="text-blue-500" size={20} />
+                  <span className="text-slate-300 text-sm">{item.text}</span>
                 </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-blue-900/30 flex items-center justify-center text-blue-400">
-                    <Phone size={24} />
-                  </div>
-                  <div>
-                    <p className="text-sm text-slate-400">Phone</p>
-                    <p className="font-medium">+62 812 3456 7890</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-blue-900/30 flex items-center justify-center text-blue-400">
-                    <MapPin size={24} />
-                  </div>
-                  <div>
-                    <p className="text-sm text-slate-400">Location</p>
-                    <p className="font-medium">Jakarta, Indonesia</p>
-                  </div>
-                </div>
-              </div>
+              ))}
+
             </div>
           </Reveal>
 
-          <Reveal delay={0.2}>
-            <form className="glass p-8 rounded-2xl space-y-6 border border-slate-800">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium text-slate-300">Name</label>
-                  <input 
-                    type="text" 
-                    id="name" 
-                    className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
-                    placeholder="John Doe"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium text-slate-300">Email</label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
-                    placeholder="john@example.com"
-                  />
-                </div>
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="subject" className="text-sm font-medium text-slate-300">Subject</label>
-                <input 
-                  type="text" 
-                  id="subject" 
-                  className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
-                  placeholder="Project Inquiry"
-                />
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium text-slate-300">Message</label>
-                <textarea 
-                  id="message" 
-                  rows={4}
-                  className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all resize-none"
-                  placeholder="Tell me about your project..."
-                />
-              </div>
-              <button 
-                type="submit" 
-                className="w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold py-4 rounded-lg shadow-lg shadow-blue-600/20 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
+          {/* RIGHT */}
+          <Reveal delay={0.1}>
+            <form
+              onSubmit={sendEmail}
+              className="space-y-4 p-6 rounded-2xl border border-slate-800 bg-slate-900/60 backdrop-blur-sm"
+            >
+
+              <input
+                type="text"
+                name="user_name"
+                value={formData.user_name}
+                onChange={handleChange}
+                placeholder="Your Name"
+                required
+                className="w-full px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition"
+              />
+
+              <input
+                type="email"
+                name="user_email"
+                value={formData.user_email}
+                onChange={handleChange}
+                placeholder="Your Email"
+                required
+                className="w-full px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition"
+              />
+
+              <input
+                type="text"
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                placeholder="Subject"
+                required
+                className="w-full px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition"
+              />
+
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Your Message"
+                required
+                rows={4}
+                className="w-full px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition"
+              />
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg 
+                bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-medium 
+                hover:opacity-90 transition disabled:opacity-60"
               >
-                Send Message <Send size={18} />
+                {loading ? "Sending..." : "Send Message"}
+                <Send size={16} />
               </button>
+
             </form>
           </Reveal>
         </div>

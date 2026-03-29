@@ -1,63 +1,51 @@
 import { Reveal } from '../ui/Reveal';
-import { Briefcase, Calendar } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 
-type Experience = {
+type Education = {
   id: number;
-  role: string;
-  type: string;
-  company: string;
+  school: string;
+  major?: string;
   period: string;
   description: string;
 };
 
-const experiences: Experience[] = [
+const education: Education[] = [
   {
     id: 1,
-    role: "Public Relations Staff",
-    type: "Organization",
-    company: "DKM Anwarul Hidayah",
-    period: "May 2025 – Now",
+    school: "SMK Negeri 71 Jakarta",
+    major: "Software Engineering (Rekayasa Perangkat Lunak)",
+    period: "Jul 2023 – Jun 2026",
     description:
-      "Managed communication and coordination for organizational activities, ensuring effective information flow and engagement with members and the community."
-  },
-  {
-    id: 2,
-    role: "Junior Web Developer",
-    type: "Internship",
-    company: "PT Rezeki Utami Sejahtera (STEPS)",
-    period: "May 2025 – Aug 2025",
-    description:
-      "Developed responsive web interfaces and collaborated with designers to implement user-friendly layouts using modern web technologies."
+      "Studied core software development concepts including web development, database design, and basic system architecture, with hands-on project experience."
   }
 ];
 
-export default function Experience() {
+export default function Education() {
   return (
     <section
-      id="experience"
+      id="education"
       className="py-20 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950"
     >
       <div className="max-w-5xl mx-auto px-6">
         <Reveal width="100%">
           <div className="text-center mb-16">
             <span className="text-blue-400/80 font-medium tracking-wider uppercase text-sm">
-              My Journey
+              Academic Background
             </span>
             <h2 className="text-3xl md:text-4xl font-bold mt-2 text-white">
-              Experience
+              Education
             </h2>
             <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 mx-auto mt-4 rounded-full"></div>
           </div>
         </Reveal>
 
-        {/* Timeline */}
         <div className="relative border-l border-slate-800 ml-3 md:ml-0 md:border-none space-y-10">
-          {experiences.map((exp, index) => (
-            <div key={exp.id} className="relative">
+          {education.map((edu, index) => (
+            <div key={edu.id} className="relative">
               <Reveal delay={index * 0.1}>
                 <div className="md:grid md:grid-cols-2 md:gap-8 items-start group">
 
-                  {/* Timeline line center (desktop) */}
+                  {/* Center Line (desktop) */}
                   <div className="hidden md:block absolute left-1/2 top-0 h-full w-px bg-slate-800 -translate-x-1/2"></div>
 
                   {/* Dot */}
@@ -67,7 +55,7 @@ export default function Experience() {
                   <div className="md:text-right md:pr-8 mb-3 md:mb-0">
                     <div className="inline-flex items-center gap-2 text-xs md:text-sm px-3 py-1 rounded-full bg-slate-800/60 border border-slate-700 text-blue-400">
                       <Calendar size={14} />
-                      {exp.period}
+                      {edu.period}
                     </div>
                   </div>
 
@@ -75,18 +63,20 @@ export default function Experience() {
                   <div className="md:pl-8">
                     <div className="p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:bg-slate-800/70 transition-all duration-200 backdrop-blur-sm">
                       
-                      <h3 className="text-lg md:text-xl font-semibold text-white flex items-center gap-2">
-                        <Briefcase size={18} className="text-blue-500" />
-                        {exp.role}
+                      <h3 className="text-lg md:text-xl font-semibold text-white">
+                        {edu.school}
                       </h3>
 
-                      <p className="text-sm text-blue-400 mt-1">
-                        {exp.company} • {exp.type}
-                      </p>
+                      {edu.major && (
+                        <p className="text-sm text-blue-400 mt-1">
+                          {edu.major}
+                        </p>
+                      )}
 
                       <p className="text-slate-400 text-sm mt-3 leading-relaxed">
-                        {exp.description}
+                        {edu.description}
                       </p>
+
                     </div>
                   </div>
 
